@@ -99,7 +99,7 @@ function build_executable(
         depwarn = nothing, warn_overwrite = nothing,
         compile = nothing, cpu_target = nothing, optimize = nothing, debug = nothing,
         inline = nothing, check_bounds = nothing, math_mode = nothing,
-        cc = nothing, cc_flags = nothing
+        cc = nothing, cc_flags = nothing, stop_before_object = false
     )
     static_julia(
         julia_program, cprog = c_program, verbose = verbose, quiet = quiet,
@@ -110,7 +110,7 @@ function build_executable(
         depwarn = depwarn, warn_overwrite = warn_overwrite,
         compile = compile, cpu_target = cpu_target, optimize = optimize, debug = debug,
         inline = inline, check_bounds = check_bounds, math_mode = math_mode,
-        cc = cc, cc_flags = cc_flags
+        cc = cc, cc_flags = cc_flags, stop_before_object = stop_before_object
     )
 end
 

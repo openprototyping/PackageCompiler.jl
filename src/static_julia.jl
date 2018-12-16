@@ -77,7 +77,7 @@ function static_julia(
         depwarn = nothing, warn_overwrite = nothing,
         compile = nothing, cpu_target = nothing, optimize = nothing, debug = nothing,
         inline = nothing, check_bounds = nothing, math_mode = nothing,
-        cc = nothing, cc_flags = nothing
+        cc = nothing, cc_flags = nothing, stop_before_object = false
     )
 
     cprog == nothing && (cprog = normpath(@__DIR__, "..", "examples", "program.c"))
@@ -169,11 +169,15 @@ function static_julia(
             end
             juliaprog = jlmain
         end
-        build_object(
-            juliaprog, o_file, builddir, verbose,
-            sysimage, home, startup_file, handle_signals, sysimage_native_code, compiled_modules,
-            depwarn, warn_overwrite, compile, cpu_target, optimize, debug, inline, check_bounds, math_mode
-        )
+
+        if stop_before_object
+            return
+        end
+        # build_object(
+        #     juliaprog, o_file, builddir, verbose,
+        #     sysimage, home, startup_file, handle_signals, sysimage_native_code, compiled_modules,
+        #     depwarn, warn_overwrite, compile, cpu_target, optimize, debug, inline, check_bounds, math_mode
+        # )
     end
 
     shared && build_shared(s_file, o_file, init_shared, builddir, verbose, optimize, debug, cc, cc_flags)
